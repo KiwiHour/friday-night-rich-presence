@@ -1,0 +1,24 @@
+<label id = "todo-label" style = "font-family: monospace;">Choose a FNF executable</label><br>
+<select id = "exe-dropdown" style = "font-family: monospace;"></select><br><br>
+<button id = "play-fnf" style = "font-family: monospace;" onclick = "play_fnf()">Play</button><br><br><br>
+<label style = "font-family: monospace;">Add a new FNF executable</label><br>
+<input id = "browse-exe-button" style = "font-family: monospace;" type = "file"><br><br>
+<button id = "add-exe-button" onclick='add_executable()' style = "font-family: monospace;">Add Executable</button>
+
+<script> 
+
+	var ipc = require("electron").ipcRenderer;
+	var ipc_main = require("electron").ipcMain;
+	ipc.on("init-exe-dropdown", (event, data) => { data.forEach(exe => {
+		console.log(exe)
+		new_option = document.createElement("option"); new_option.text = exe.name
+		document.getElementById("exe-dropdown").add(new_option)
+		
+	})})
+	function add_executable() { ipc.send("new-exe", document.getElementById("browse-exe-button").files[0].path)}
+	function play_fnf() { ipc.send("play-fnf", document.getElementById("exe-dropdown").value)}
+	
+
+
+
+</script>
