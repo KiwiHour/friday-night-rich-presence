@@ -3,3 +3,4 @@ EXE name detection is NOT case senstitive. Go crazy
 VSWhitty - VSWhitty.exe
 Ugh - Ugh.exe
 Tricky - Tricky.exe
+B-Sides - B-Side.exe
